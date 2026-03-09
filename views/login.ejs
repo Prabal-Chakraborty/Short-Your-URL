@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        /* Matching the deep space gradient from the home page */
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div style="background: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 20px; backdrop-filter: blur(15px); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 350px;">
+      
+      <h1 style="margin-top: 0; text-align: center; font-size: 2rem; letter-spacing: 1px; text-shadow: 0 0 10px rgba(0,210,255,0.3);">Login</h1>
+      
+      <form action="/user/login" method="post" style="display: flex; flex-direction: column; gap: 15px;">
+        
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <label style="font-size: 0.8rem; color: #aaa; text-transform: uppercase; font-weight: bold;">Email</label>
+          <input type="text" required name="email" placeholder="email@example.com" 
+                 style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; transition: 0.3s;" />
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <label style="font-size: 0.8rem; color: #aaa; text-transform: uppercase; font-weight: bold;">Password</label>
+          <input type="password" required name="password" placeholder="••••••••" 
+                 style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; outline: none; transition: 0.3s;" />
+        </div>
+
+        <button type="submit" 
+                style="margin-top: 10px; padding: 14px; border-radius: 8px; border: none; background: linear-gradient(to right, #00d2ff, #3a7bd5); color: white; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3); transition: transform 0.2s;">
+          Login
+        </button>
+
+      </form>
+      
+      <p style="text-align: center; font-size: 0.85rem; color: #888; margin-top: 20px;">
+        Don't have an account? <a href="/signup" style="color: #00d2ff; text-decoration: none;">Sign Up</a>
+      </p>
+    </div>
+  </body>
+</html>

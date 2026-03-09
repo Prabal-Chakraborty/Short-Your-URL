@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        /* Background gradient to give it a modern tech feel */
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        margin: 0;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h1 style="font-size: 3rem; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0,255,255,0.5);">URL Shortener</h1>
+
+    <% if (locals.id) { %>
+    <p style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 8px; border-left: 5px solid #00d2ff; font-weight: bold;">
+        URL Generated: <a href="http://localhost:8001/url/<%= id %>" style="color: #00d2ff; text-decoration: none;">http://localhost:8001/url/<%= id %></a>
+    </p>
+    <% } %>
+
+    <div style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); border: 1px solid rgba(255, 255, 255, 0.18);">
+      <form method="POST" action="/url" style="display: flex; flex-direction: column; gap: 10px;">
+        <label style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #ccc;">Enter Your Original URL</label>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" name="url" placeholder="https://example.com" style="padding: 12px; border-radius: 5px; border: none; outline: none; width: 300px; background: rgba(255,255,255,0.9);" />
+            <button type="submit" style="padding: 12px 25px; border-radius: 5px; border: none; background: #00d2ff; color: white; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);">Generate</button>
+        </div>
+      </form>
+    </div>
+
+    <div style="margin-top: 50px; width: 80%; max-width: 800px;">
+      <% if (locals.urls) { %>
+      <table style="width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.05); border-radius: 10px; overflow: hidden;">
+        <thead style="background: rgba(255, 255, 255, 0.1);">
+          <tr>
+            <th style="padding: 15px; text-align: left;">S. No</th>
+            <th style="padding: 15px; text-align: left;">ShortID</th>
+            <th style="padding: 15px; text-align: left;">Redirect</th>
+            <th style="padding: 15px; text-align: left;">Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% urls.forEach((url, index) => { %>
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <td style="padding: 15px;"><%= index + 1 %></td>
+            <td style="padding: 15px; font-family: monospace; color: #00d2ff;"><%= url.shortId %></td>
+            <td style="padding: 15px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><%= url.redirectURL %></td>
+            <td style="padding: 15px; font-weight: bold;"><%= url.visitHistory.length %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %>
+    </div>
+  </body>
+</html>
